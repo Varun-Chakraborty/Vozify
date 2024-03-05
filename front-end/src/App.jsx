@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
 import Layout from "./Layout";
 import Home from "./pages/home";
 import About from "./pages/about";
 import { UserContextProvider } from "./contexts/userContext";
 import { ThemeContextProvider } from "./contexts/themeContext";
-import ErrorComponent from "./components/errorComponent";
 import Auth from "./pages/auth";
 import UserProfile from "./pages/userProfile";
+import Contact from "./pages/contact";
 
 export default function App() {
 	const [user, setUser] = useState(null);
@@ -16,7 +16,6 @@ export default function App() {
 		{
 			path: '/',
 			element: <Layout />,
-			errorElement: <ErrorComponent />,
 			children: [
 				{
 					path: '',
@@ -28,7 +27,15 @@ export default function App() {
 				},
 				{
 					path: 'login',
-					element: user ? <UserProfile /> : <Auth />,
+					element: user ? <Navigate to='/profile'/> : <Auth />
+				},
+				{
+					path: 'profile',
+					element: user ? <UserProfile /> : <Navigate to='/login' />,
+				},
+				{
+					path: 'contact',
+					element: <Contact />,
 				}
 			]
 		}

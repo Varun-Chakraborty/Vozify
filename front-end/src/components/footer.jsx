@@ -13,14 +13,14 @@ export default function Footer() {
             component: <FaXTwitter />,
             links: {
                 Varun: 'https://twitter.com/_V_Chakraborty_',
-                Tushar: 'https://github.com/DhawasTushar',
+                Tushar: 'https://twitter.com/DhawasTushar',
             }
         },
         {
             component: <FaGithub />,
             links: {
                 Varun: 'https://github.com/Varun-Chakraborty',
-                Tushar: 'https://github.com/Varun-Chakraborty',
+                Tushar: 'https://github.com/tushardhawas',
             }
         },
     ]

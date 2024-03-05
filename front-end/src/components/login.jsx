@@ -3,6 +3,7 @@ import Button from "./button";
 
 export default function Login() {
     const [data, setData] = useState({});
+    const url = '';
     function handleInputFieldChange(evnt) {
         setData({ ...data, [evnt.currentTarget.name]: evnt.currentTarget.value });
     }
@@ -11,8 +12,15 @@ export default function Login() {
             onSubmit={
                 evnt => {
                     evnt.preventDefault();
-
-                    console.log(data);
+                    fetch(
+                        url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        }
+                    );
                 }
             }
             className="flex flex-col items-center gap-3"
