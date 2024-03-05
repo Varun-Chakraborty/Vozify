@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Editor files
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dependency directories
+body-parser/
+cors/
+express/
+helmet/
+mongoose/
+morgan/
+nodemon/
