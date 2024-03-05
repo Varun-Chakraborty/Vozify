@@ -12,6 +12,7 @@ import Contact from "./pages/contact";
 export default function App() {
 	const [user, setUser] = useState(null);
 	const [theme, setTheme] = useState('light');
+	const [message, setMessage] = useState({ message: '', isPositive: false });
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -46,7 +47,7 @@ export default function App() {
 	}, [theme]);
 	return (
 		<ThemeContextProvider value={{ theme, setTheme }}>
-			<UserContextProvider value={user}>
+			<UserContextProvider value={{user, setUser}}>
 				<RouterProvider router={router} />
 			</UserContextProvider>
 		</ThemeContextProvider>

@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Button from "./button";
+import { useUserContext } from "../contexts/userContext";
+import fetchUser from '../hooks/fetchUser.js';
 
 export default function Login() {
     const [data, setData] = useState({});
+    const { setUser } = useUserContext(); 
     const url = '';
     function handleInputFieldChange(evnt) {
         setData({ ...data, [evnt.currentTarget.name]: evnt.currentTarget.value });
@@ -12,15 +15,8 @@ export default function Login() {
             onSubmit={
                 evnt => {
                     evnt.preventDefault();
-                    fetch(
-                        url, {
-                            method: 'POST',
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify(data)
-                        }
-                    );
+                    let user = fetchUser(url, data);
+                    user && setUser(user);
                 }
             }
             className="flex flex-col items-center gap-3"
