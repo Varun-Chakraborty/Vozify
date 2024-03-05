@@ -3,7 +3,8 @@ import Button from "./button";
 import axios from "axios"; // Import Axios
 
 export default function Login() {
-    const [data, setData] = useState({
+
+  const [data, setData] = useState({
         username: "",
         password: ""
     });
@@ -31,6 +32,7 @@ export default function Login() {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col items-center gap-3">
+
             <h2 className="font-bold text-xl uppercase font-serif">Login</h2>
             <input
                 onChange={handleInputFieldChange}
