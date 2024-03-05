@@ -1,0 +1,3 @@
+
+
+app.use('/auth', authRoutes); 
