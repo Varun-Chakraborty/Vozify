@@ -8,11 +8,12 @@ import { ThemeContextProvider } from "./contexts/themeContext";
 import Auth from "./pages/auth";
 import UserProfile from "./pages/userProfile";
 import Contact from "./pages/contact";
+import { MessageContextProvider } from "./contexts/messageContext";
 
 export default function App() {
 	const [user, setUser] = useState(null);
 	const [theme, setTheme] = useState('light');
-	const [message, setMessage] = useState({ message: '', isPositive: false });
+	const [messages, setMessages] = useState([]);
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -28,7 +29,7 @@ export default function App() {
 				},
 				{
 					path: 'login',
-					element: user ? <Navigate to='/profile'/> : <Auth />
+					element: user ? <Navigate to='/profile' /> : <Auth />
 				},
 				{
 					path: 'profile',
@@ -46,10 +47,12 @@ export default function App() {
 		htmlElement.classList.toggle('dark', theme === 'dark');
 	}, [theme]);
 	return (
-		<ThemeContextProvider value={{ theme, setTheme }}>
-			<UserContextProvider value={{user, setUser}}>
-				<RouterProvider router={router} />
-			</UserContextProvider>
-		</ThemeContextProvider>
+		<MessageContextProvider value={{messages, setMessages}}>
+			<ThemeContextProvider value={{ theme, setTheme }}>
+				<UserContextProvider value={{ user, setUser }}>
+					<RouterProvider router={router} />
+				</UserContextProvider>
+			</ThemeContextProvider>
+		</MessageContextProvider>
 	);
 }

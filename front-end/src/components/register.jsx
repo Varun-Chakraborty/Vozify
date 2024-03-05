@@ -1,20 +1,20 @@
 import { useState } from "react";
 import Button from "./button";
+import axios from "axios";
 
 export default function Register() {
-    const [data, setData] = useState({});
+    const [data, setData] = useState({
+        username: "", password: ""
+    });
     function handleInputFieldChange(evnt) {
         setData({ ...data, [evnt.currentTarget.name]: evnt.currentTarget.value });
     }
+    async function handleSubmit() {
+        axios('http:localhost:3000/auth/register')
+    }
     return (
         <form
-            onSubmit={
-                evnt => {
-                    evnt.preventDefault();
-
-                    console.log(data);
-                }
-            }
+            onClick={handleSubmit}
             className="flex flex-col items-center gap-3"
             action="" method="post">
             <h2 className="font-bold text-xl uppercase font-serif">Register</h2>

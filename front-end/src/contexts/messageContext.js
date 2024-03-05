@@ -1,11 +1,11 @@
 import { createContext, useContext } from "react";
 
 const messageContext = createContext({
-    messageDetails: {
+    messages: [{
         message: '',
         isPositive: false
-    }, setMessage: () => { }
+    }], setMessages: () => { }
 });
-export const messageContextProvider = messageContext.Provider;
+export const MessageContextProvider = messageContext.Provider;
 
 export const useMessageContext = () => useContext(messageContext);

@@ -2,10 +2,11 @@ import { useState } from "react";
 import Button from "./button";
 import { useUserContext } from "../contexts/userContext";
 import axios from "axios"; // Import Axios
+import { useMessageContext } from "../contexts/messageContext";
 
 
 export default function Login() {
-
+    const { setMessage } = useMessageContext();
     const [data, setData] = useState({
         username: "",
         password: ""
@@ -22,7 +23,7 @@ export default function Login() {
         try {
             const response = await axios.post(url, data); // Send POST request using Axios
             if (response) {
-                console.log("sucuess")
+                console.log("succuess")
             }
             // Handle response
             console.log("Response:", response.data); // Log response data
