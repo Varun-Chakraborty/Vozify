@@ -28,9 +28,11 @@ export default function Footer() {
     return (
         <footer>
             <hr className="dark:border-gray-700" />
-            <div className="dark:text-white px-4">
+            <div className="dark:text-white px-4 select-none">
                 <div className="flex justify-around items-center p-3">
-                    <Logo />
+                    <Link to='/'>
+                        <Logo />
+                    </Link>
                     <div className="sites-to-visit ">
                         <div className="uppercase space-y-2">
                             <div className="font-bold">Pages</div>

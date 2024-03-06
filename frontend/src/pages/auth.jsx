@@ -13,7 +13,7 @@ export default function Auth() {
                         <h2 className="text-2xl font-bold">Welcome Here</h2>
                         <p>Just put in some of your details, so we can get to know about you, and remember you next time you come back</p>
                         <div className="flex flex-col items-center">
-                            <p>already a member?</p>
+                            <p>Already a member?</p>
                             <Button
                                 className="hover:text-black dark:hover:text-white cursor-pointer"
                                 onClick={() => setIfLogin(true)}> Login </Button>
@@ -30,7 +30,7 @@ export default function Auth() {
                         </div>
                     </div>
                 </div>
-                <div className={"h-full w-1/2 p-3 rounded-lg absolute bg-white dark:bg-slate-900 flex items-center justify-center transition-all "
+                <div className={"h-full w-1/2 p-3 rounded-lg absolute bg-white dark:bg-slate-900 flex items-center justify-center transition-transform "
                     + (login ? " translate-x-0 " : " translate-x-full ")}>
                     {login ? <Login /> : <Register />}
                 </div>

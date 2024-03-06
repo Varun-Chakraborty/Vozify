@@ -2,11 +2,21 @@ import { useState } from "react";
 import Button from "./button";
 import { useUserContext } from "../contexts/userContext";
 import axios from "axios"; // Import Axios
-import { useMessageContext } from "../contexts/messageContext";
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 export default function Login() {
-    const { setMessage } = useMessageContext();
+    const showToastSuccessMessage = () => {
+        toast.success('Logged In', {
+            position: "top-right",
+        });
+    }
+    const showToastFailMessage = (message) => {
+        toast.error(message, {
+            position: "top-right"
+        });
+    }
     const [data, setData] = useState({
         username: "",
         password: ""
@@ -23,15 +33,15 @@ export default function Login() {
         try {
             const response = await axios.post(url, data); // Send POST request using Axios
             if (response) {
-                console.log("succuess")
+                console.log('success');
+                showToastSuccessMessage()
             }
             // Handle response
             console.log("Response:", response.data); // Log response data
-            console.log("Login successful");
         } catch (error) {
             // Handle error
             console.error("Error:", error);
-            console.error("Login failed");
+            showToastFailMessage("no user found with this credentials");
         }
     }
 

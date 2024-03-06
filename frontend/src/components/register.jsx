@@ -3,14 +3,29 @@ import Button from "./button";
 import axios from "axios";
 
 export default function Register() {
+    const url = "http://localhost:3000/auth/register";
     const [data, setData] = useState({
         username: "", password: ""
     });
     function handleInputFieldChange(evnt) {
         setData({ ...data, [evnt.currentTarget.name]: evnt.currentTarget.value });
     }
-    async function handleSubmit() {
-        axios('http:localhost:3000/auth/register')
+    async function handleSubmit(evnt) {
+        evnt.preventDefault();
+
+        try {
+            const response = await axios.post(url, data); // Send POST request using Axios
+            if (response) {
+                console.log('success');
+                toast("success");
+            }
+            // Handle response
+            console.log("Response:", response.data); // Log response data
+        } catch (error) {
+            // Handle error
+            console.error("Error:", error);
+            toast("no user found with this credentials");
+        }
     }
     return (
         <form

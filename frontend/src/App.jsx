@@ -8,12 +8,11 @@ import { ThemeContextProvider } from "./contexts/themeContext";
 import Auth from "./pages/auth";
 import UserProfile from "./pages/userProfile";
 import Contact from "./pages/contact";
-import { MessageContextProvider } from "./contexts/messageContext";
+import ShowSearchedInfo from "./components/showSearchedBusiness";
 
 export default function App() {
 	const [user, setUser] = useState(null);
 	const [theme, setTheme] = useState('light');
-	const [messages, setMessages] = useState([]);
 	const router = createBrowserRouter([
 		{
 			path: '/',
@@ -38,6 +37,10 @@ export default function App() {
 				{
 					path: 'contact',
 					element: <Contact />,
+				},
+				{
+					path: 'search',
+					element: <ShowSearchedInfo />,
 				}
 			]
 		}
@@ -47,12 +50,10 @@ export default function App() {
 		htmlElement.classList.toggle('dark', theme === 'dark');
 	}, [theme]);
 	return (
-		<MessageContextProvider value={{messages, setMessages}}>
 			<ThemeContextProvider value={{ theme, setTheme }}>
 				<UserContextProvider value={{ user, setUser }}>
 					<RouterProvider router={router} />
 				</UserContextProvider>
-			</ThemeContextProvider>
-		</MessageContextProvider>
+		</ThemeContextProvider>
 	);
 }
